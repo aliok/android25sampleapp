@@ -3,9 +3,11 @@
 */
 node("android"){
   stage("Checkout"){
-    print params
-    print params.BUILD_CONFIG
     checkout scm
+  }
+
+  stage ("Prepare"){
+    writeFile file: 'app/src/main/assets/fhconfig.properties', text: params.FH_CONFIG_CONTENT
   }
 
   stage("Build"){
